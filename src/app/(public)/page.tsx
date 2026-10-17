@@ -8,7 +8,7 @@ import { EnquiryForm } from "@/components/public/enquiry-form";
 import { Icon, CATEGORY_ICON } from "@/components/ui/icons";
 import { db, schema as s } from "@/db";
 import { eq, desc } from "drizzle-orm";
-import { daysUntil, fmtDate } from "@/lib/utils";
+import { daysUntil, fmtDate, telHref } from "@/lib/utils";
 
 export default async function HomePage() {
   const [heroAds, courseAds, intakes, catalogue, news, settings, gallery] = await Promise.all([
@@ -256,7 +256,7 @@ export default async function HomePage() {
             <h2 className="text-4xl font-semibold">Questions before you apply?</h2>
             <p className="mt-4 max-w-md text-mist">Ask Admissions about a course, fees or intake dates. We reply by email or phone.</p>
             <ul className="mt-8 space-y-4">
-              <li className="flex gap-3"><Icon.Phone className="text-gold" /><a href={`tel:${settings.contact_phone.replace(/\s/g, "")}`} className="hover:underline">{settings.contact_phone}</a></li>
+              <li className="flex gap-3"><Icon.Phone className="text-gold" /><a href={telHref(settings.contact_phone)} className="hover:underline">{settings.contact_phone}</a></li>
               <li className="flex gap-3"><Icon.Mail className="text-gold" /><a href={`mailto:${settings.contact_email}`} className="hover:underline">{settings.contact_email}</a></li>
               <li className="flex gap-3"><Icon.Pin className="text-gold" />{settings.address}</li>
               {settings.whatsapp_number && (
@@ -265,7 +265,7 @@ export default async function HomePage() {
                 </li>
               )}
             </ul>
-            <iframe title="Map showing GUVTC location" className="mt-8 aspect-[16/9] w-full rounded-md border-0 grayscale-[30%]" loading="lazy"
+            <iframe title="Map showing GUVTC location, near Gafa Grounds on Zimuto Road" className="mt-8 aspect-[16/9] w-full rounded-md border-0 grayscale-[30%]" loading="lazy"
               src={`https://www.google.com/maps?q=${encodeURIComponent(settings.map_query)}&output=embed`} />
           </div>
           <div className="rounded-md bg-white p-6 text-navy md:p-8">

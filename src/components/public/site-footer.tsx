@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Wordmark } from "@/components/ui/wordmark";
 import { Icon } from "@/components/ui/icons";
 import type { SiteSettings } from "@/lib/settings";
+import { telHref } from "@/lib/utils";
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   return (
@@ -36,7 +37,9 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           <h2 className="font-display text-lg text-white">Contact</h2>
           <ul className="mt-3 space-y-3 text-sm">
             <li className="flex gap-2"><Icon.Pin className="mt-0.5 shrink-0 text-gold" />{settings.address}</li>
-            <li className="flex gap-2"><Icon.Phone className="mt-0.5 shrink-0 text-gold" /><a href={`tel:${settings.contact_phone.replace(/\s/g, "")}`} className="hover:text-gold">{settings.contact_phone}</a></li>
+            <li className="flex gap-2"><Icon.Phone className="mt-0.5 shrink-0 text-gold" /><a href={telHref(settings.contact_phone)} className="hover:text-gold">{settings.contact_phone}</a></li>
+            {settings.principal_phone && <li className="flex gap-2"><Icon.Phone className="mt-0.5 shrink-0 text-gold" /><span>Principal: <a href={telHref(settings.principal_phone)} className="hover:text-gold">{settings.principal_phone}</a></span></li>}
+            {settings.deputy_principal_phone && <li className="flex gap-2"><Icon.Phone className="mt-0.5 shrink-0 text-gold" /><span>Deputy Principal: <a href={telHref(settings.deputy_principal_phone)} className="hover:text-gold">{settings.deputy_principal_phone}</a></span></li>}
             <li className="flex gap-2"><Icon.Mail className="mt-0.5 shrink-0 text-gold" /><a href={`mailto:${settings.contact_email}`} className="hover:text-gold">{settings.contact_email}</a></li>
             <li className="flex gap-2"><Icon.Clock className="mt-0.5 shrink-0 text-gold" />{settings.office_hours}</li>
           </ul>

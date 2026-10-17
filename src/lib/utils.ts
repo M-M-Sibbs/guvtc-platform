@@ -2,6 +2,12 @@ export function cn(...c: (string | false | null | undefined)[]) {
   return c.filter(Boolean).join(" ");
 }
 
+/** tel: link for a Zimbabwean number written locally (054 2221705) or internationally (+263 …). */
+export function telHref(phone: string) {
+  const digits = phone.replace(/[^\d+]/g, "");
+  return `tel:${digits.startsWith("0") ? `+263${digits.slice(1)}` : digits}`;
+}
+
 export function slugify(s: string) {
   return s.toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/[\s_-]+/g, "-").slice(0, 80);
 }

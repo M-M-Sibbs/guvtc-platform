@@ -30,7 +30,9 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         <section className="panel grid gap-4 p-6 md:grid-cols-2">
           <h2 className="font-display text-xl font-semibold md:col-span-2">Contact details</h2>
           <F k="institution_name" label="Institution name" />
-          <F k="contact_phone" label="Telephone" />
+          <F k="contact_phone" label="Main telephone" />
+          <F k="principal_phone" label="Principal's phone" hint="Shown on the Contact page and footer. Leave empty to hide." />
+          <F k="deputy_principal_phone" label="Deputy Principal's phone" hint="Shown on the Contact page and footer. Leave empty to hide." />
           <F k="contact_email" label="Public email" />
           <F k="whatsapp_number" label="WhatsApp number" hint="Leave empty until WhatsApp enquiries are approved." />
           <F k="address" label="Physical address" />
